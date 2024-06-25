@@ -1,0 +1,73 @@
+/* src/Timer.css */
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid #2fa622;
+  padding: 15px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+  transition: all 0.5s ease;
+  /*width: 150px; /* Ajuste cette valeur selon tes besoins */
+  /*height: 150px; /* Ajuste cette valeur selon tes besoins */
+}
+
+.time {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.end-time {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  margin-bottom: 20px;
+
+}
+
+button {
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+}
+.fix {
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.timer-vibrate {
+  animation: vibrate 0.5s linear infinite;
+}
+
+.timer-warning {
+  border: 7px solid red;
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
