@@ -4,22 +4,26 @@ h1 {
   display: flex;
   text-align: center;
   justify-content: center;
+  margin-top: 0;
 }
 
 .app.light {
-  background-color: white;
+  background-color: rgb(174, 168, 168);
   color: black;
+  height: 970px;
 }
 
 .app.dark {
-  background-color: black;
-  color: white;
+
+  background-color: rgb(65, 60, 60);
+  color: rgb(236, 241, 242);
+  height: 
 }
 
 .theme-toggle-button {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 30px;
+  right: 20px;
   padding: 10px;
   cursor: pointer;
 }

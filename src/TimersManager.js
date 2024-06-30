@@ -4,7 +4,14 @@ import './TimersManager.css';
 
 const TimersManager = () => {
   const [timers, setTimers] = useState([
-    { id: 1, initialSeconds: 60, currentSeconds: 60, isActive: false, endTime: new Date(new Date().getTime() + 60 * 1000) }, // Minuteur par défaut (1 minute)
+    {
+      id: 1,
+      initialSeconds: 60,
+      currentSeconds: 60,
+      isActive: false,
+      startTime: new Date(), // Ajoute startTime
+      endTime: new Date(new Date().getTime() + 60 * 1000)
+    }, // Minuteur par défaut (1 minute)
   ]);
   const [newTimerHours, setNewTimerHours] = useState('');
   const [newTimerMinutes, setNewTimerMinutes] = useState('');
@@ -17,8 +24,16 @@ const TimersManager = () => {
     const totalSeconds = hours * 3600 + minutes * 60 + seconds;
 
     if (totalSeconds > 0) {
+      const startTime = new Date(); // Définit le temps de départ
       const endTime = new Date(new Date().getTime() + totalSeconds * 1000);
-      setTimers([...timers, { id: Date.now(), initialSeconds: totalSeconds, currentSeconds: totalSeconds, isActive: true, endTime }]);
+      setTimers([...timers, {
+        id: Date.now(),
+        initialSeconds: totalSeconds,
+        currentSeconds: totalSeconds,
+        isActive: true,
+        startTime, // Passe startTime comme prop
+        endTime
+      }]);
       setNewTimerHours('');
       setNewTimerMinutes('');
       setNewTimerSeconds('');
@@ -69,6 +84,7 @@ const TimersManager = () => {
               id={timer.id}
               initialSeconds={timer.currentSeconds}
               isActive={timer.isActive}
+              startTime={timer.startTime} // Passe startTime comme prop
               endTime={timer.endTime}
               onDelete={deleteTimer}
             />

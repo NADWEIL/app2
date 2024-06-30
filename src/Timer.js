@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import ProgressBar from "react-progressbar";
 import "./Timer.css";
 
 const Timer = ({
   id,
   initialSeconds,
   isActive: initialIsActive,
+  startTime, // Ajoute startTime comme prop
   endTime,
   onDelete,
 }) => {
@@ -12,6 +14,7 @@ const Timer = ({
   const [isActive, setIsActive] = useState(initialIsActive);
   const [isPaused, setIsPaused] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
+  const [progress, setProgress] = useState(100); // Pourcentage de la barre de progression
 
   useEffect(() => {
     let interval = null;
@@ -19,6 +22,8 @@ const Timer = ({
     if (isActive && !isPaused && seconds > 0) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds - 1);
+        const remainingTime = (seconds / initialSeconds) * 100;
+        setProgress(remainingTime);
       }, 1000);
     } else if (seconds === 0) {
       setIsActive(false);
@@ -26,7 +31,7 @@ const Timer = ({
       setTimeout(() => {
         setIsVibrating(false);
         onDelete(id);
-      }, 10000); // Attends 10 secondes avant de supprimer
+      }, 10000); // Attend 10 secondes avant de supprimer
     }
 
     return () => {
@@ -34,7 +39,7 @@ const Timer = ({
         clearInterval(interval);
       }
     };
-  }, [isActive, isPaused, seconds, onDelete, id]);
+  }, [isActive, isPaused, seconds, onDelete, id, initialSeconds]);
 
   const toggle = () => {
     if (!isActive) {
@@ -51,6 +56,7 @@ const Timer = ({
     setIsActive(false);
     setIsPaused(false);
     setIsVibrating(false);
+    setProgress(100);
   };
 
   const formatTime = (totalSeconds) => {
@@ -92,6 +98,15 @@ const Timer = ({
         <button className="fix" onClick={() => onDelete(id)}>
           ❌
         </button>
+      </div>
+      <div className="start-time">
+        {startTime && `Départ à: ${startTime.toLocaleTimeString()}`}
+      </div>
+      <div className="total-time">
+  {`Temps total: ${formatTime(initialSeconds)}`}
+      </div>
+      <div className="progress-bar">
+        <ProgressBar completed={progress} />
       </div>
     </div>
   );

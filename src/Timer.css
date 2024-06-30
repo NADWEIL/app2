@@ -1,4 +1,5 @@
 /* src/Timer.css */
+
 .timer {
   display: flex;
   flex-direction: column;
@@ -9,8 +10,6 @@
   border-radius: 50px;
   margin-bottom: 10px;
   transition: all 0.5s ease;
-  /*width: 150px; /* Ajuste cette valeur selon tes besoins */
-  /*height: 150px; /* Ajuste cette valeur selon tes besoins */
 }
 
 .time {
@@ -20,30 +19,37 @@
 }
 
 .end-time {
-  font-size: 24px;
+  font-size: 1rem; /* Taille de police adaptative */
   margin-bottom: 20px;
+}
+
+.start-time, .elapsed-time {
+  font-size: 1rem; /* Taille de police adaptative */
+  margin-bottom: 10px;
 }
 
 .buttons {
   display: flex;
   margin-bottom: 20px;
-
 }
 
 button {
-  font-size: 14px;
+  font-size: 1rem; /* Taille de police adaptative */
   cursor: pointer;
   border: none;
   background-color: #3498db;
   color: white;
   border-radius: 5px;
-}
-.fix {
   padding: 10px 20px;
+  margin: 5px;
 }
 
 button:hover {
   background-color: #2980b9;
+}
+
+.fix {
+  margin: 5px;
 }
 
 .timer-vibrate {
@@ -53,6 +59,18 @@ button:hover {
 .timer-warning {
   border: 7px solid red;
 }
+
+.progress-bar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 1px solid red;
+
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+
 
 @keyframes vibrate {
   0% {
@@ -69,5 +87,11 @@ button:hover {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .time {
+    font-size: 36px; /* Ajustement de la taille de la police pour les petits écrans */
   }
 }
