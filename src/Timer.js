@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ProgressBar from "react-progressbar";
 import "./Timer.css";
 
 const Timer = ({
@@ -14,7 +13,6 @@ const Timer = ({
   const [isActive, setIsActive] = useState(initialIsActive);
   const [isPaused, setIsPaused] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
-  const [progress, setProgress] = useState(100); // Pourcentage de la barre de progression
 
   useEffect(() => {
     let interval = null;
@@ -23,7 +21,6 @@ const Timer = ({
       interval = setInterval(() => {
         setSeconds((seconds) => seconds - 1);
         const remainingTime = (seconds / initialSeconds) * 100;
-        setProgress(remainingTime);
       }, 1000);
     } else if (seconds === 0) {
       setIsActive(false);
@@ -56,7 +53,6 @@ const Timer = ({
     setIsActive(false);
     setIsPaused(false);
     setIsVibrating(false);
-    setProgress(100);
   };
 
   const formatTime = (totalSeconds) => {
@@ -104,9 +100,6 @@ const Timer = ({
       </div>
       <div className="total-time">
   {`Temps total: ${formatTime(initialSeconds)}`}
-      </div>
-      <div className="progress-bar">
-        <ProgressBar completed={progress} />
       </div>
     </div>
   );
