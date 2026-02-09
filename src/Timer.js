@@ -20,7 +20,6 @@ const Timer = ({
     if (isActive && !isPaused && seconds > 0) {
       interval = setInterval(() => {
         setSeconds((seconds) => seconds - 1);
-        const remainingTime = (seconds / initialSeconds) * 100;
       }, 1000);
     } else if (seconds === 0) {
       setIsActive(false);
